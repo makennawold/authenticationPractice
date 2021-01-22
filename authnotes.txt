@@ -1,0 +1,9 @@
+added 
+<Auth0Provider
+    domain="devmakenna.us.auth0.com"
+    clientId="Ihd4po6L5AnXHp9ALV2VIL48JTMn2lUi"
+    redirectUri={window.location.origin}
+  >
+around browser router in bootstrap.js
+
+don't forget to install react-router-dom
