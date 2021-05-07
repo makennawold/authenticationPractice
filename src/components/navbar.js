@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./login/logoutButton";
-import AuthNav from "./authNav";
+import GalleryEditor from './galleryEditor';
 
 
 export default function NavBar(props) {
+    const { isAuthenticated } = useAuth0();
+    console.log(isAuthenticated);
+
+    const navbarMode = isAuthenticated ? '' : 'Auth';
+
     return (
-        <div>
-            {props.loginStatus === false ? (
+        <div className={`navbar${navbarMode}`}>
+            <p>title</p>
+            <p>link to Gallery Feed</p>
+            <p>link to About Me</p>
+            {isAuthenticated === true ? (
                 <div>
-                    not logged in navbar
-                    <button onClick={() => props.changeLoginStatus()}>fakeLogin</button>
+                    logged in navbar
+                    <NavLink to="/galleryEditor">Gallery Editor</NavLink>
+                    <LogoutButton />                
                 </div>
             ): (
                 <div>
-                    logged in navbar
-                    <LogoutButton changeLoginStatus={props.changeLoginStatus}/>
-                    <button onClick={() => props.changeLoginStatus()}>fakeLogout</button>
+                    not logged in navbar
                 </div>
             )}
-            <AuthNav />
         </div>
     )
 }
+
+
